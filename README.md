@@ -5,9 +5,9 @@ To tackle this problem, I used a general 4 layer neural network. <br>
 Please read through the notebooks below for the detail solution and how to test the model in the testing notebook
 
 #### Notebooks
-Here I explained my methodology and limitations. [Training Notebook with detailed comments](../Model_Preparation_and_Training.ipython)
+Here I explained my methodology and limitations. [Training Notebook with detailed comments](Model_Preparation_and_Training.ipython)
 <br>
-Refer upload your dataset into this notebook to obtain the mean square error as required. [Testing Notebook for your test dataset ](../Model_Testing.ipython)
+Refer upload your dataset into this notebook to obtain the mean square error as required. [Testing Notebook for your test dataset ](Model_Testing.ipython)
 
 #### Other files
 **devX.csv , devY.csv** 1% development set, takes about 7min to process from sratch, so I will load it for faster processing<br>
