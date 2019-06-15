@@ -56,7 +56,7 @@ However it would perform much better if I am able to training on the entire data
 I received the email about Amazon Web service just this week, however I had a lot difficulties setting up an Amazon account due to payment issues. I ended up training on my local host where the computing power and memory is limited.<br>
 <br>
 I would like to thank Grab once again for providing such an opportunity.<br>
-And I wish you a pleasant read of my reading.<br>
+And I wish you a pleasant read <br>
 
 Best Wishes,<br>
 Zhou Zhi
