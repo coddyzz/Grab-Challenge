@@ -11,7 +11,8 @@ Please read through the notebooks below for the detail solution and how to test 
 #### 2.1.Notebooks
 Here I explained my methodology and limitations.<br> [Training Notebook with detailed comments](Model_Preparation_and_Training.ipynb)
 <br>
-Refer upload your dataset into this notebook to obtain the mean square error as required. <br>[Testing Notebook for your test dataset ](Model_Testing.ipynb)
+Refer upload your dataset into this notebook to obtain the mean square error as required. <br>[Testing Notebook for your test dataset ](Model_Testing.ipynb)<br>
+If the pictures are not displaying in the test notebook, please refer to  [this](test_pdf.pdf)
 
 #### 2.2.Other files
 **training_1st_half.csv,training_1st_half.csv** Combine to form original dataset (divided for uploading purpose only)<br>
@@ -23,14 +24,14 @@ Refer upload your dataset into this notebook to obtain the mean square error as 
 The goal is to use upto 14 days prior demand data to predict 5 timestamps worth of demand after time T.<br>
 I used 13 days prior demand data as I do not wish to exceed the limit accidentally.<br>
 
-The original data looks like:![alt text](./images/Data_head.PNG)
+The original data looks like:<br>![alt text](./images/Data_head.PNG)<br>
 The time stamp and day column is transformed into a running index to better keep track of the prior and after set at any time T.<br>
-![alt text](./images/Running_time_stamp.PNG)
-To train the dataset, I have to change it into the desire features of [demand on T-1248, demand on T-1247 ... demand on T, latitude, longitude] **1251** columns:
-Example features: ![alt text](./images/X_head.PNG)
-Example targets: ![alt text](./images/Y_head.PNG)
+![alt text](./images/Running_time_stamp.PNG)<br>
+To train the dataset, I have to change it into the desire features of [demand on T-1248, demand on T-1247 ... demand on T, latitude, longitude] **1251** columns:<br>
+Example features:<br> ![alt text](./images/X_head.PNG)<br>
+Example targets:<br> ![alt text](./images/Y_head.PNG)<br>
 **However this is caused memory issues (~160 GB required for such dataframe of roughly 4million by 1251)**<br>
-Thus I used random sampling to seperate the training set into smaller subsets. And also adopted a minibatch approach in training.
+Thus I used random sampling to seperate the training set into smaller subsets. And also adopted a minibatch approach in training.<br>
 ![alt text](./images/Data_sampling.jpg)
 #### 3.2.Model
 I used a 3 layers neurual network as of following:
@@ -43,12 +44,12 @@ where x is the output of last layer, W is the weights, and b is a constant
 The training and development(1%) error in terms of mean square error is measured as of following with respect to iterations of sub training set<br>
 **The average mean standard error for training is 0.0034550717, while mean standard error for development is 0.006478587**<br>
 <br>
-The entire training set contains 66 sub training set (thus the pattern observed below)
-![alt text](./images/Results.PNG)
+The entire training set contains 66 sub training set (thus the pattern observed below)<br>
+![alt text](./images/Results.PNG)<br>
 The below graph shows the mean square error of development set for each loop of 66 sub trainin sets (entire training set):<br>
 It shows a smaller but limited improvement as we continue the training.<br>
 This could be due to the stochasticity of the small random sub set
-![alt text](./images/Improvement.PNG)
+![alt text](./images/improvement.PNG)
 ### 5.Conclusion
 I would consider the model a rather accurate predicition of the case. <br>
 However it would perform much better if I am able to training on the entire dataset instead of resampling.<br>
