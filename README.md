@@ -23,18 +23,18 @@ Refer upload your dataset into this notebook to obtain the mean square error as 
 The goal is to use upto 14 days prior demand data to predict 5 timestamps worth of demand after time T.<br>
 I used 13 days prior demand data as I do not wish to exceed the limit accidentally.<br>
 
-The original data looks like:![alt text](./images/Data_head.png)
+The original data looks like:![alt text](./images/Data_head.PNG)
 The time stamp and day column is transformed into a running index to better keep track of the prior and after set at any time T.<br>
-![alt text](./images/Running_time_stamp.png)
+![alt text](./images/Running_time_stamp.PNG)
 To train the dataset, I have to change it into the desire features of [demand on T-1248, demand on T-1247 ... demand on T, latitude, longitude] **1251** columns:
-Example features: ![alt text](./images/X_head.png)
-Example targets: ![alt text](./images/Y_head.png)
+Example features: ![alt text](./images/X_head.PNG)
+Example targets: ![alt text](./images/Y_head.PNG)
 **However this is caused memory issues (~160 GB required for such dataframe of roughly 4million by 1251)**<br>
 Thus I used random sampling to seperate the training set into smaller subsets. And also adopted a minibatch approach in training.
-![alt text](./images/data_sampling.jpg)
+![alt text](./images/Data_sampling.jpg)
 #### 3.2.Model
 I used a 3 layers neurual network as of following:
-![alt text](./images/NN.png)
+![alt text](./images/NN.PNG)
 _picture taken from [http://neuralnetworksanddeeplearning.com/chap1.html] and edited on 15 June 2019_<br>
 **Each layer is activated by a rectilinear function, and its value calculated as a linear function of X @ W + b.**<br>
 **The model is regulated via L2 regulation for less overfitting due to having 1251 inputs** <br>
@@ -44,11 +44,11 @@ The training and development(1%) error in terms of mean square error is measured
 **The average mean standard error for training is 0.0034550717, while mean standard error for development is 0.006478587**<br>
 <br>
 The entire training set contains 66 sub training set (thus the pattern observed below)
-![alt text](./images/Results.png)
+![alt text](./images/Results.PNG)
 The below graph shows the mean square error of development set for each loop of 66 sub trainin sets (entire training set):<br>
 It shows a smaller but limited improvement as we continue the training.<br>
 This could be due to the stochasticity of the small random sub set
-![alt text](./images/improvement.png)
+![alt text](./images/Improvement.PNG)
 ### 5.Conclusion
 I would consider the model a rather accurate predicition of the case. <br>
 However it would perform much better if I am able to training on the entire dataset instead of resampling.<br>
